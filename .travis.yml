@@ -38,15 +38,15 @@ env:
 before_script:
   - DIST_PATH=$TRAVIS_BUILD_DIR/dist
   - REPO_URL=https://github.com/Firdosebanu/repos.git
-  - git config --global user.name "$GIT_NAME"
-  - git config --global user.email "$GIT_EMAIL"
+  - git config --global user.name "Firdosebanu"
+  - git config --global user.email "Firdosebanu@github.com"
 
 after_success:
   - if [[ $TRAVIS_BRANCH == "master" ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
       cd $DIST_PATH;
-      git clone $REPO_URL dist;
+      git clone https://github.com/Firdosebanu/repos.git dist;
       cd $DIST_PATH && rm -rf *;
       cd $TRAVIS_BUILD_DIR && npm run build;
       cd $DIST_PATH && git add -A && git commit -am "Travis build $TRAVIS_BUILD_NUMBER";
-      git push $REPO_URL ;
+      git push https://github.com/Firdosebanu/repos.git ;
     fi
